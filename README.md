@@ -1,4 +1,4 @@
-# Vshapes React
+# Vshapes
 
 ## Getting Started
 
@@ -8,10 +8,10 @@
 ### Installation
 
 1. Clone the repo
-   git clone https://github.com/YOUR_USERNAME/vshapes-react.git
+   git clone https://github.com/Raj3110/vshapes.git
 
 2. Go into the folder
-   cd vshapes-react
+   cd vshapes
 
 3. Install dependencies
    npm install
