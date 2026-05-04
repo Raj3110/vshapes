@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --blue-dark: #0a2540;
+  --blue-mid: #1a4fa0;
+  --blue-accent: #1e7ce8;
+  --blue-light: #5bb3f5;
+  --cyan: #38bdf8;
+  --white: #ffffff;
+  --off-white: #f0f6ff;
+  --text-dark: #0d1b2e;
+  --text-mid: #3a5070;
+  --text-light: #6b8aaa;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text-dark); overflow-x: hidden; }
+
+/* ── Keyframe animations ── */
+@keyframes bd { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-26px)} }
+@keyframes pFloat { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-20px) rotate(1.5deg)} }
+@keyframes cdf { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+@keyframes bob { 0%,100%{transform:translateY(0);opacity:1} 80%{transform:translateY(10px);opacity:0} }
+@keyframes sl { 0%{left:-100%} 100%{left:100%} }
+
+/* ── Buttons ── */
+.btn-sample {
+  display: inline-block; padding: 14px 34px;
+  border: 1.5px solid var(--blue-dark); border-radius: 50px;
+  font-family: 'DM Sans', sans-serif; font-size: 11.5px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-dark);
+  background: transparent; cursor: pointer; transition: background 0.25s, color 0.25s;
+}
+.btn-sample:hover { background: var(--blue-dark); color: white; }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--blue-accent), var(--blue-mid));
+  color: white; padding: 14px 32px; border-radius: 50px; border: none;
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+  cursor: pointer; letter-spacing: 0.04em;
+  box-shadow: 0 8px 28px rgba(30,124,232,0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(30,124,232,0.45); }
+
+.btn-outline {
+  background: transparent; color: var(--blue-accent); padding: 13px 30px;
+  border-radius: 50px; border: 1.5px solid var(--blue-accent);
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s, color 0.2s;
+}
+.btn-outline:hover { background: var(--blue-accent); color: white; }
+
+.btn-green {
+  background: transparent; color: #2a8a50; border: 1.5px solid #2a8a50;
+  padding: 12px 24px; border-radius: 50px;
+  font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 600;
+  cursor: pointer; letter-spacing: 0.05em; text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-green:hover { background: #2a8a50; color: white; }
+
+/* ── Section title ── */
+.section-title {
+  text-align: center; font-family: 'Playfair Display', serif;
+  font-size: clamp(26px,4vw,46px); font-weight: 700;
+  color: var(--blue-dark); margin-bottom: 60px;
+}
+.section-title em { font-style: normal; color: var(--blue-accent); }
+
+/* ── Reveal ── */
+.reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.75s, transform 0.75s; }
+.reveal.vis { opacity: 1; transform: translateY(0); }
+
+/* ── Advantage cards ── */
+.adv-card {
+  background: var(--off-white); border: 1px solid rgba(30,124,232,0.1);
+  border-radius: 18px; padding: 20px 22px;
+  display: flex; align-items: flex-start; gap: 14px;
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.6s, transform 0.6s, box-shadow 0.3s, border-color 0.3s;
+}
+.adv-card.vis { opacity: 1; transform: translateY(0); }
+.adv-card:hover { box-shadow: 0 14px 36px rgba(30,124,232,0.12); border-color: rgba(30,124,232,0.25); }
+.adv-card.feat { background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid)); border: none; }
+.adv-icon { width: 42px; height: 42px; border-radius: 11px; background: rgba(30,124,232,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 19px; }
+.adv-card.feat .adv-icon { background: rgba(255,255,255,0.12); }
+.adv-h { font-size: 13.5px; font-weight: 600; margin-bottom: 3px; }
+.adv-p { font-size: 12px; color: var(--text-light); line-height: 1.5; }
+.adv-card.feat .adv-h { color: white; }
+.adv-card.feat .adv-p { color: rgba(255,255,255,0.65); }
+
+/* ── Video thumb ── */
+.video-thumb { aspect-ratio: 4/3; border-radius: 22px; overflow: hidden; box-shadow: 0 28px 70px rgba(10,37,64,0.18); cursor: pointer; position: relative; }
+.video-thumb:hover img { transform: scale(1.04); }
+.play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 60px; height: 60px; background: rgba(255,255,255,0.92); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--blue-accent); box-shadow: 0 8px 28px rgba(0,0,0,0.18); transition: transform 0.2s; }
+.video-thumb:hover .play-btn { transform: translate(-50%,-50%) scale(1.1); }
+
+/* ── Landing scroll hint ── */
+.lh-scroll-line { width: 36px; height: 1px; background: var(--text-light); position: relative; overflow: hidden; }
+.lh-scroll-line::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:var(--blue-accent); animation: sl 2s ease-in-out infinite; }
+
+/* ── Scroll hero hint ── */
+.scroll-hint.hidden { opacity: 0; pointer-events: none; }
+.scroll-arrow { width: 22px; height: 38px; border: 2px solid rgba(30,124,232,0.3); border-radius: 12px; display: flex; justify-content: center; padding-top: 6px; }
+.scroll-arrow::before { content:''; width:4px; height:10px; background:var(--blue-accent); border-radius:2px; animation: bob 1.6s ease-in-out infinite; }
+
+/* ── Hero text shown state ── */
+.hero-text.shown { opacity: 1 !important; transform: translateY(0) !important; }

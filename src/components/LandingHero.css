@@ -1,0 +1,134 @@
+.landing-hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse 110% 90% at 65% 50%, #cde5ff 0%, #eaf4ff 50%, #f5f9ff 100%);
+}
+
+.swirl {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid rgba(100, 180, 255, 0.15);
+  pointer-events: none;
+}
+.swirl:nth-child(1) { width: 500px; height: 500px; right: -60px; top: 50%; transform: translateY(-50%) rotate(-18deg); }
+.swirl:nth-child(2) { width: 680px; height: 680px; right: -160px; top: 50%; transform: translateY(-50%) rotate(-10deg); }
+.swirl:nth-child(3) { width: 900px; height: 900px; right: -300px; top: 50%; transform: translateY(-50%) rotate(4deg); }
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.28;
+  pointer-events: none;
+}
+.blob-1 {
+  width: 580px; height: 580px;
+  background: #a8d0ff;
+  top: -160px; left: -120px;
+  animation: bd 10s ease-in-out infinite;
+}
+.blob-2 {
+  width: 420px; height: 420px;
+  background: #c4e8ff;
+  top: 35%; right: -100px;
+  animation: bd 13s ease-in-out infinite reverse;
+}
+@keyframes bd {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-26px); }
+}
+
+.lh-content {
+  position: relative;
+  z-index: 3;
+  padding: 0 80px;
+  max-width: 560px;
+}
+.lh-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 5.5vw, 66px);
+  font-weight: 900;
+  color: var(--blue-dark);
+  line-height: 1.06;
+  margin-bottom: 24px;
+}
+.lh-content p {
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 1.9;
+  margin-bottom: 38px;
+  max-width: 420px;
+}
+.btn-sample {
+  display: inline-block;
+  padding: 14px 34px;
+  border: 1.5px solid var(--blue-dark);
+  border-radius: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+.btn-sample:hover { background: var(--blue-dark); color: white; }
+
+.lh-product {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 56%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+}
+.lh-product img {
+  width: 90%;
+  max-width: 600px;
+  height: 70%;
+  object-fit: contain;
+  object-position: center;
+  animation: pFloat 7s ease-in-out infinite;
+  filter: drop-shadow(0 40px 80px rgba(30, 100, 200, 0.2));
+}
+@keyframes pFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-20px) rotate(1.5deg); }
+}
+
+.lh-scroll {
+  position: absolute;
+  bottom: 38px; left: 80px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+.lh-scroll-line {
+  width: 36px; height: 1px;
+  background: var(--text-light);
+  position: relative;
+  overflow: hidden;
+}
+.lh-scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: var(--blue-accent);
+  animation: sl 2s ease-in-out infinite;
+}
+@keyframes sl {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}

@@ -1,0 +1,8 @@
+.announcement {
+  background: var(--blue-dark);
+  color: #a8c4e8;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  padding: 10px;
+}
