@@ -94,10 +94,9 @@ const SUSTAIN_CSS = `
     display: grid; grid-template-columns: repeat(3,1fr);
     max-width: 1100px; margin: 0 auto 80px;
     border-radius: 20px; overflow: hidden; box-shadow: 0 16px 60px rgba(10,37,64,0.14);
+    background-size: cover; background-position: center;
   }
   .feat-row-card { position: relative; min-height: 280px; overflow: hidden; }
-  .feat-row-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
-  .feat-row-card:hover img { transform: scale(1.04); }
   .feat-row-card-overlay {
     position: absolute; inset: 0;
     background: linear-gradient(180deg, transparent 40%, rgba(5,20,50,0.72) 100%);
@@ -106,6 +105,7 @@ const SUSTAIN_CSS = `
   .feat-row-card-label h3 { font-size: 15px; font-weight: 700; margin: 0 0 6px; }
   .feat-row-card-label p { font-size: 12.5px; opacity: 0.88; line-height: 1.6; margin: 0; }
   .feat-row-card-label a { font-size: 12px; color: #7bc8f8; text-decoration: none; display: inline-block; margin-top: 8px; font-weight: 600; }
+  .feat-row-card:not(:last-child) { border-right: 1px solid rgba(255,255,255,0.15); }
 
   .scale-section {
     background: linear-gradient(135deg, #0a2540 0%, #1a4a8a 60%, #0d3570 100%);
@@ -194,23 +194,49 @@ const SUSTAIN_CSS = `
 
 const SCALE_STEPS = [
   {
-    icon: <svg viewBox="0 0 32 32" fill="none" stroke="#7bc8f8" strokeWidth="1.8"><rect x="6" y="4" width="14" height="18" rx="2"/><path d="M9 9h8M9 13h8M9 17h5" strokeLinecap="round"/></svg>,
+    icon: (
+      <svg viewBox="0 0 32 32" fill="none" stroke="#7bc8f8" strokeWidth="1.8">
+        <rect x="6" y="4" width="14" height="18" rx="2" />
+        <path d="M9 9h8M9 13h8M9 17h5" strokeLinecap="round" />
+      </svg>
+    ),
     label: "Design with Care",
   },
   {
-    icon: <svg viewBox="0 0 32 32" fill="none" stroke="#7bc8f8" strokeWidth="1.8"><circle cx="16" cy="16" r="10"/><path d="M11 16l4 4 6-7" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+    icon: (
+      <svg viewBox="0 0 32 32" fill="none" stroke="#7bc8f8" strokeWidth="1.8">
+        <circle cx="16" cy="16" r="10" />
+        <path d="M11 16l4 4 6-7" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
     label: "Test Responsibly",
   },
   {
-    icon: <svg viewBox="0 0 32 32" fill="none" stroke="#7bc8f8" strokeWidth="1.8"><circle cx="16" cy="16" r="6"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4" strokeLinecap="round"/></svg>,
+    icon: (
+      <svg viewBox="0 0 32 32" fill="none" stroke="#7bc8f8" strokeWidth="1.8">
+        <circle cx="16" cy="16" r="6" />
+        <path d="M16 4v4M16 24v4M4 16h4M24 16h4" strokeLinecap="round" />
+      </svg>
+    ),
     label: "Engineer Efficiently",
   },
   {
-    icon: <svg viewBox="0 0 32 32" fill="none" stroke="#7bc8f8" strokeWidth="1.8"><rect x="4" y="10" width="24" height="16" rx="3"/><path d="M10 10V7a6 6 0 0112 0v3"/></svg>,
+    icon: (
+      <svg viewBox="0 0 32 32" fill="none" stroke="#7bc8f8" strokeWidth="1.8">
+        <rect x="4" y="10" width="24" height="16" rx="3" />
+        <path d="M10 10V7a6 6 0 0112 0v3" />
+      </svg>
+    ),
     label: "Compliant Global Rollout",
   },
   {
-    icon: <svg viewBox="0 0 32 32" fill="none" stroke="#7bc8f8" strokeWidth="1.8"><circle cx="16" cy="16" r="10"/><ellipse cx="16" cy="16" rx="5" ry="10"/><path d="M6 16h20M8 11h16M8 21h16"/></svg>,
+    icon: (
+      <svg viewBox="0 0 32 32" fill="none" stroke="#7bc8f8" strokeWidth="1.8">
+        <circle cx="16" cy="16" r="10" />
+        <ellipse cx="16" cy="16" rx="5" ry="10" />
+        <path d="M6 16h20M8 11h16M8 21h16" />
+      </svg>
+    ),
     label: "Responsible Manufacturing",
   },
 ];
@@ -227,8 +253,11 @@ export default function Sustainability() {
       document.head.appendChild(tag);
     }
     const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("vis"); }),
-      { threshold: 0.1 }
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add("vis");
+        }),
+      { threshold: 0.1 },
     );
     document.querySelectorAll(".s-reveal").forEach((el) => obs.observe(el));
     return () => obs.disconnect();
@@ -237,7 +266,11 @@ export default function Sustainability() {
   const DotNav = () => (
     <div className="dot-nav">
       {[0, 1].map((i) => (
-        <span key={i} className={activeDot === i ? "active" : ""} onClick={() => setActiveDot(i)} />
+        <span
+          key={i}
+          className={activeDot === i ? "active" : ""}
+          onClick={() => setActiveDot(i)}
+        />
       ))}
     </div>
   );
@@ -245,46 +278,84 @@ export default function Sustainability() {
   return (
     <>
       {/* ANNOUNCEMENT */}
-      <div style={{ background: "#0a2540", color: "#a8c4e8", textAlign: "center", fontSize: 13, letterSpacing: "0.06em", padding: 10 }}>
-        Lorem ipsum is a dummy or placeholder text commonly used in graphic design
+      <div
+        style={{
+          background: "#0a2540",
+          color: "#a8c4e8",
+          textAlign: "center",
+          fontSize: 13,
+          letterSpacing: "0.06em",
+          padding: 10,
+        }}
+      >
+        Lorem ipsum is a dummy or placeholder text commonly used in graphic
+        design
       </div>
 
       {/* HERO */}
       <section className="sustain-hero">
-        <img className="bg" src="/Sustainability/hands_on_globe.png" alt="Sustainability" />
+        <img
+          className="bg"
+          src="/Sustainability/hands_on_globe.png"
+          alt="Sustainability"
+        />
         <div className="sustain-hero-overlay" />
         <div className="sustain-hero-text">
-          <h1>Where Design<br />Meets <em>Responsibility</em></h1>
+          <h1>
+            Where Design
+            <br />
+            Meets <em>Responsibility</em>
+          </h1>
         </div>
       </section>
 
       {/* INTRO */}
       <div className="sustain-intro s-reveal">
         <p>
-          At V-Shapes, sustainability is not a feature. It is the outcome of thoughtful design,
-          responsible material choices, and packaging that performs better in real life.
+          At V-Shapes, sustainability is not a feature. It is the outcome of
+          thoughtful design, responsible material choices, and packaging that
+          performs better in real life.
         </p>
       </div>
 
       {/* DESIGNED WITH INTENT */}
       <section style={{ padding: "0 60px 60px", background: "white" }}>
-        <h2 className="dwi-title s-reveal"><em>Designed</em> With Intent</h2>
+        <h2 className="dwi-title s-reveal">
+          <em>Designed</em> With Intent
+        </h2>
         <div className="dwi-grid s-reveal">
           <div className="dwi-card featured">
-            <img src="/Sustainability/no_tear_by_design.jpg" alt="No Tear-Offs By Design" />
+            <img
+              src="/Sustainability/no_tear_by_design.jpg"
+              alt="No Tear-Offs By Design"
+            />
             <div className="dwi-card-overlay" />
             <div className="dwi-card-label">
-              <div style={{ fontSize: 18, fontWeight: 800 }}>No Tear-Offs<br />By Design</div>
-              <p>By designing packs without tear-offs, V-Shapes enables cleaner use, controlled dispensing, and more responsible end-of-life outcomes.</p>
+              <div style={{ fontSize: 18, fontWeight: 800 }}>
+                No Tear-Offs
+                <br />
+                By Design
+              </div>
+              <p>
+                By designing packs without tear-offs, V-Shapes enables cleaner
+                use, controlled dispensing, and more responsible end-of-life
+                outcomes.
+              </p>
             </div>
           </div>
           <div className="dwi-card" style={{ minHeight: 200 }}>
-            <img src="/Sustainability/less_wasted.jpg" alt="Less Wasted Less Produced" />
+            <img
+              src="/Sustainability/less_wasted.jpg"
+              alt="Less Wasted Less Produced"
+            />
             <div className="dwi-card-overlay" />
             <div className="dwi-card-label">Less Wasted Less Produced</div>
           </div>
           <div className="dwi-card" style={{ minHeight: 200 }}>
-            <img src="/Sustainability/single_format.png" alt="Single-Use Format" />
+            <img
+              src="/Sustainability/single_format.png"
+              alt="Single-Use Format"
+            />
             <div className="dwi-card-overlay" />
             <div className="dwi-card-label">Single-Use Format</div>
           </div>
@@ -296,10 +367,21 @@ export default function Sustainability() {
       <section style={{ background: "#f5f9ff" }}>
         <div className="materials-section s-reveal">
           <div>
-            <h2><em>Materials</em> That<br />Make Sense</h2>
-            <p>Our packaging solutions are designed for recyclability, with an ongoing shift toward Nomo polymer structures for easier recycling.</p>
+            <h2>
+              <em>Materials</em> That
+              <br />
+              Make Sense
+            </h2>
+            <p>
+              Our packaging solutions are designed for recyclability, with an
+              ongoing shift toward Nomo polymer structures for easier recycling.
+            </p>
             <div className="cert-badges">
-              {["CE", "GMP Quality", "fcms"].map((b) => <div className="cert-badge" key={b}>{b}</div>)}
+              {["CE", "GMP Quality", "fcms"].map((b) => (
+                <div className="cert-badge" key={b}>
+                  {b}
+                </div>
+              ))}
             </div>
           </div>
           <div className="materials-img">
@@ -308,18 +390,35 @@ export default function Sustainability() {
         </div>
 
         <div className="quote-banner s-reveal">
-          A packaging that opens cleanly and empties fully helps reduce product waste naturally.
+          A packaging that opens cleanly and empties fully helps reduce product
+          waste naturally.
         </div>
 
         <div style={{ padding: "0 60px", marginBottom: 16 }}>
-          <div className="feat-row s-reveal">
+          {/* Single shared background image on the feat-row wrapper */}
+          <div
+            className="feat-row s-reveal"
+            style={{
+              backgroundImage: "url('/Sustainability/banner.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
             {[
-              { src: "/Sustainability/banner.jpg", title: "The Problem With Traditional Sachets", desc: "From spillage to waste, a closer look at why legacy single-serve formats no longer serve modern needs." },
-              { src: "/Sustainability/make_sense.jpg", title: "Why One-Handed Matters", desc: "Exploring how intuitive, single-hand use improves everyday experiences across food, personal care, and on-the-go products." },
-              { src: "/Sustainability/Sustainability.jpg", title: "Designed for Complete Use", desc: "How controlled dispensing helps ensure products are used fully, not left behind." },
+              {
+                title: "The Problem With Traditional Sachets",
+                desc: "From spillage to waste, a closer look at why legacy single-serve formats no longer serve modern needs.",
+              },
+              {
+                title: "Why One-Handed Matters",
+                desc: "Exploring how intuitive, single-hand use improves everyday experiences across food, personal care, and on-the-go products.",
+              },
+              {
+                title: "Designed for Complete Use",
+                desc: "How controlled dispensing helps ensure products are used fully, not left behind.",
+              },
             ].map((card) => (
               <div className="feat-row-card" key={card.title}>
-                <img src={card.src} alt={card.title} />
                 <div className="feat-row-card-overlay" />
                 <div className="feat-row-card-label">
                   <h3>{card.title}</h3>
@@ -337,16 +436,28 @@ export default function Sustainability() {
       <section className="scale-section s-reveal">
         <h2>Designed to Scale Responsibly</h2>
         <p>
-          Because V-Shapes designs both the packaging format and the machines that produce it,
-          sustainability is built into the system. Improvements scale seamlessly across production
-          lines, partners, and global markets.
+          Because V-Shapes designs both the packaging format and the machines
+          that produce it, sustainability is built into the system. Improvements
+          scale seamlessly across production lines, partners, and global
+          markets.
         </p>
         <div className="scale-flow">
           {SCALE_STEPS.map((step, i) => (
             <React.Fragment key={step.label}>
               <div className="scale-node">
                 <div className="scale-node-circle">
-                  <span style={{ position: "absolute", top: 6, left: 10, fontSize: 10, opacity: 0.5, color: "#7bc8f8" }}>{i + 1}</span>
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: 6,
+                      left: 10,
+                      fontSize: 10,
+                      opacity: 0.5,
+                      color: "#7bc8f8",
+                    }}
+                  >
+                    {i + 1}
+                  </span>
                   {step.icon}
                 </div>
                 <p>{step.label}</p>
@@ -359,7 +470,9 @@ export default function Sustainability() {
 
       {/* GLOBAL STANDARDS */}
       <section className="standards-section s-reveal">
-        <h2>Validated by <em>Global Standards</em></h2>
+        <h2>
+          Validated by <em>Global Standards</em>
+        </h2>
         <div className="standards-badges">
           {[
             { logo: "UL", sub: "UL Standard" },
@@ -369,8 +482,15 @@ export default function Sustainability() {
             { logo: "♻", sub: "Compostable Packaging", green: true },
           ].map((b) => (
             <div className="std-badge" key={b.sub}>
-              <div className="std-badge-logo" style={{ color: b.green ? "#2e8b57" : "#1e3a8a" }}>{b.logo}</div>
-              <div style={{ fontSize: 11, color: "#4a6080", fontWeight: 500 }}>{b.sub}</div>
+              <div
+                className="std-badge-logo"
+                style={{ color: b.green ? "#2e8b57" : "#1e3a8a" }}
+              >
+                {b.logo}
+              </div>
+              <div style={{ fontSize: 11, color: "#4a6080", fontWeight: 500 }}>
+                {b.sub}
+              </div>
             </div>
           ))}
         </div>
@@ -382,8 +502,23 @@ export default function Sustainability() {
         <img src="/Sustainability/shape_future.jpg" alt="Shape the Future" />
         <div className="cta-sustain-overlay" />
         <div className="cta-sustain-content">
-          <h2>Shape the <em>Future</em><br />Responsibly</h2>
-          <button style={{ background: "white", color: "#0a2540", border: "none", borderRadius: 8, padding: "12px 28px", fontWeight: 700, fontSize: 14, cursor: "pointer" }}>
+          <h2>
+            Shape the <em>Future</em>
+            <br />
+            Responsibly
+          </h2>
+          <button
+            style={{
+              background: "white",
+              color: "#0a2540",
+              border: "none",
+              borderRadius: 8,
+              padding: "12px 28px",
+              fontWeight: 700,
+              fontSize: 14,
+              cursor: "pointer",
+            }}
+          >
             Talk to us
           </button>
         </div>
