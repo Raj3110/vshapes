@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Sustainability from "./pages/Sustainability";
+import Solutions from "./pages/Solutions";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/sustainability" element={<Sustainability />} />
+        <Route path="/solutions" element={<Solutions />} />
       </Routes>
       <Footer />
     </BrowserRouter>
